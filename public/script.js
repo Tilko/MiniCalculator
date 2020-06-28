@@ -9,7 +9,7 @@ const sandbox = () => {
 const initCalculator = () => {
 
   const screen = document.querySelector('.screen')
-  const allDigits = document.querySelectorAll('.number')
+  const allDigits = document.querySelectorAll('.digit')
 
   allDigits.forEach(numberDiv => {
     numberDiv.addEventListener('click', () => {

@@ -65,13 +65,13 @@ button  {
   grid-column-end: 4;
 }
 
-.number {
+.digit {
   display: flex;
   background-color: #848380;
   justify-content: center;
   align-items: center;
 }
 
-.number:active {
+.digit:active {
   background-color: #B2B2B1;
 }

@@ -1,3 +1,13 @@
 h1 {
   background-color: red;
 }
+
+.debug {
+  height: 200px;
+  width: 300px;
+  background-color: yellowgreen;
+}
+
+.hidden {
+  display: none;
+}

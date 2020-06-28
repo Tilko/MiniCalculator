@@ -1,5 +1,5 @@
 describe("Debug Button", () => {
-  const url = 'http://localhost:1234/public'
+  const url = 'http://127.0.0.1:1234/public/'
 
   it("should show Greg div when clicking on button", () => {
     cy.visit(url)

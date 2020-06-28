@@ -1,4 +1,4 @@
-const url = "http://127.0.0.1:1234/public/";
+const url = "http://127.0.0.1:1234/";
 
 describe("Debug Button", () => {
   it("should show Greg div when clicking on button", () => {

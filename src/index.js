@@ -1,6 +1,6 @@
 const sandbox = require("./sandbox");
-const makeCalculatorUI = require("./calculatorUI");
-const calculatorUI = makeCalculatorUI();
+const CalculatorUI = require("./calculatorUI");
+const calculatorUI = new CalculatorUI();
 
 const initCalculator = () => {
   const screen = document.querySelector(".screen");
@@ -10,16 +10,15 @@ const initCalculator = () => {
     screen.textContent = toDisplay;
   };
 
-  const sendToCalculatorUIAndUpdateDisplay = (event) => {
+  const sendToCalculatorUI = (event) => {
     const clickedDigitDiv = event.target;
-    const digit = Number(clickedDigitDiv.textContent);
-
-    calculatorUI.digitClicked(digit);
-    updateDisplay(calculatorUI.numberDisplayed);
+    const digitAsText = clickedDigitDiv.textContent;
+    calculatorUI.digitClicked(Number(digitAsText));
   };
 
+  calculatorUI.registerListener(updateDisplay);
   allDigits.forEach((numberDiv) =>
-    numberDiv.addEventListener("click", sendToCalculatorUIAndUpdateDisplay)
+    numberDiv.addEventListener("click", sendToCalculatorUI)
   );
 };
 document.addEventListener("DOMContentLoaded", initCalculator);

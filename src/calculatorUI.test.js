@@ -22,4 +22,24 @@ describe("CalculatorUI", () => {
     calculatorUI.digitClicked(3);
     expect(calculatorUI.numberDisplayed).toBe(123);
   });
+
+  it("notifies when number-to-display changes", () => {
+    const callback = jest.fn();
+
+    calculatorUI.registerListener(callback);
+
+    expect(callback).not.toHaveBeenCalled();
+    calculatorUI.numberDisplayed = 12345;
+    expect(callback).toHaveBeenCalledWith(12345);
+  });
+
+  it("notifies when digit clicked", () => {
+    const callback = jest.fn();
+
+    calculatorUI.registerListener(callback);
+
+    expect(callback).not.toHaveBeenCalled();
+    calculatorUI.digitClicked(5);
+    expect(callback).toHaveBeenCalledWith(5);
+  });
 });

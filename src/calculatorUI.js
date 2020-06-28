@@ -1,10 +1,26 @@
+const doNothing = () => {};
+
 class CalculatorUI {
   constructor() {
-    this.numberDisplayed = 0;
+    this._numberDisplayed = 0;
+    this.listener = doNothing;
   }
 
   digitClicked(digit) {
-    this.numberDisplayed = this.numberDisplayed * 10 + digit;
+    this.numberDisplayed = this._numberDisplayed * 10 + digit;
+  }
+
+  registerListener(callback) {
+    this.listener = callback;
+  }
+
+  set numberDisplayed(n) {
+    this._numberDisplayed = n;
+    this.listener(this._numberDisplayed);
+  }
+
+  get numberDisplayed() {
+    return this._numberDisplayed;
   }
 }
 

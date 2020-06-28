@@ -1,3 +1,16 @@
+class CalculatorUI {
+  constructor() {
+    this.numberDisplayed = 0;
+  }
+
+  digitClicked(digit) {
+    this.numberDisplayed = this.numberDisplayed * 10 + digit;
+  }
+}
+
+module.exports = CalculatorUI;
+
+/*
 const makeCalculatorUI = () => {
   const digitClicked = (digit) => {
     let num = calculatorUI.numberDisplayed;
@@ -10,5 +23,4 @@ const makeCalculatorUI = () => {
   };
   return calculatorUI;
 };
-
-module.exports = makeCalculatorUI;
+*/

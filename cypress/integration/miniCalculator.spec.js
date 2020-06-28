@@ -36,21 +36,19 @@ describe("Calculator", () => {
   });
 
   it("should display digit on screen when clicking on a digit", () => {
-    const digitFour = cy.contains("4")
-    digitFour.click()
+    const digitFour = cy.contains("4");
+    digitFour.click();
     cy.get(".screen").should("contain.text", 4);
+    cy.get(".screen").should("not.contain.text", 0);
   });
-  
-  it("should display concat digits on screen when clicking on multiple digit", () => {
-    const digitOne = cy.contains("1")
-    const digitThree = cy.contains("3")
-    const digitSeven = cy.contains("7")
 
-    digitOne.click()
-    digitThree.click()
-    digitThree.click()
-    digitSeven.click()
+  it("should display concat digits on screen when clicking on multiple digit", () => {
+    cy.get(".numpad").contains("1").click();
+    cy.get(".numpad").contains("3").click();
+    cy.get(".numpad").contains("3").click();
+    cy.get(".numpad").contains("7").click();
 
     cy.get(".screen").should("contain.text", 1337);
+    cy.get(".screen").should("not.contain.text", 0);
   });
 });

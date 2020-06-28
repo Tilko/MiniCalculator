@@ -62,7 +62,7 @@ button  {
 
 .zero {
   grid-column-start: 1;
-  grid-column-end: 3;
+  grid-column-end: 4;
 }
 
 .number {
@@ -70,8 +70,6 @@ button  {
   background-color: #848380;
   justify-content: center;
   align-items: center;
-  /* border: solid 1px black;
-  box-sizing: border-box; */
 }
 
 .number:active {

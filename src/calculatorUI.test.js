@@ -1,7 +1,7 @@
 const CalculatorUI = require("./calculatorUI");
 
 describe("CalculatorUI", () => {
-  let mockCalculator = { add: jest.fn() };
+  let mockCalculator = { add: jest.fn(), equal: jest.fn() };
   let calculatorUI;
 
   beforeEach(() => {
@@ -53,6 +53,16 @@ describe("CalculatorUI", () => {
     calculatorUI.plusClicked();
 
     expect(mockCalculator.add).toHaveBeenCalledWith(123);
+  });
+
+  it("calls 'equal' on calculator with number displayed when 'equal' clicked", () => {
+    calculatorUI.digitClicked(1);
+    calculatorUI.digitClicked(2);
+    calculatorUI.digitClicked(3);
+
+    calculatorUI.equalClicked();
+
+    expect(mockCalculator.equal).toHaveBeenCalledWith(123);
   });
 
   it("displays calculator result when clicking equal", () => {

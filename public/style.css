@@ -22,8 +22,9 @@ body {
   font-family: "Work Sans", sans-serif;
 }
 
-button  {
+button {
   all: unset;
+  cursor: pointer;
 }
 
 .calculator {
@@ -36,7 +37,7 @@ button  {
   border-radius: 6px;
   overflow: hidden;
   box-shadow: 0 15px 50px -5px grey;
-  border: 1px solid #1F1F1F;
+  border: 1px solid #1f1f1f;
   color: #ededec;
 }
 
@@ -48,16 +49,37 @@ button  {
   padding-right: 10px;
   font-weight: 100;
   font-size: 6em;
-
 }
 
 .pad {
+  /* cursor: pointer; */
   display: grid;
-  background-color: #575655;
-  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
-  gap: 1px;
+  grid-template-columns: 3fr 1fr;
   font-size: 2.5em;
-  cursor: pointer;
+  background-color: #575655;
+  gap: 1px;
+}
+
+.numpad {
+  display: grid;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  gap: inherit;
+}
+
+.operator-pad {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: inherit;
+}
+
+.operation {
+  display: flex;
+  background-color: #ff9f0a;
+  justify-content: center;
+  align-items: center;
+}
+.operation:active {
+  background-color: #cb7d06;
 }
 
 .zero {
@@ -73,5 +95,5 @@ button  {
 }
 
 .digit:active {
-  background-color: #B2B2B1;
+  background-color: #b2b2b1;
 }

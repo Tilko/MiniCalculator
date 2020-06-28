@@ -51,7 +51,7 @@ button  {
 
 }
 
-.numpad {
+.pad {
   display: grid;
   background-color: #575655;
   grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;

@@ -42,4 +42,30 @@ describe("CalculatorUI", () => {
     calculatorUI.digitClicked(5);
     expect(callback).toHaveBeenCalledWith(5);
   });
+
+  describe("After entered first number and clicked '+'", () => {
+    let firstNumberDigits = [1, 2, 3];
+    let firstNumber = Number(firstNumberDigits.join())
+    
+    beforeEach(() => {
+      for (digits of firstNumberDigits) {
+        calculatorUI.digitClicked(digits)
+      }
+      calculatorUI.plusClicked();
+    });
+
+    it("still shows first number", () => {
+      calculatorUI.numberDisplayed = firstNumber;
+    });
+    
+    it('replaces number when entering more digits', () => {
+      calculatorUI.digitClicked(4)
+      calculatorUI.digitClicked(5)
+      calculatorUI.digitClicked(6)
+
+      expect(calculatorUI.numberDisplayed).toBe(456)
+    })
+  });
+
+  // it("replaces number displayed when entering digit after clicking ")
 });

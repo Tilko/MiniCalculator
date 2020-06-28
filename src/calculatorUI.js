@@ -10,6 +10,10 @@ class CalculatorUI {
     this.numberDisplayed = this._numberDisplayed * 10 + digit;
   }
 
+  plusClicked() {
+    this._numberDisplayed = 0;
+  }
+
   registerListener(callback) {
     this.listener = callback;
   }

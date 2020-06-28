@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "@types/jest": "^26.0.3",
     "cypress": "^4.9.0",
     "jest": "^26.1.0",
     "webpack": "^4.43.0",
@@ -12,7 +13,11 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "tdd": "jest src --watch",
+    "test": "jest src",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",

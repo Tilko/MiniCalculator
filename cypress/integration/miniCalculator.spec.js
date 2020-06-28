@@ -61,10 +61,10 @@ describe("Calculator", () => {
     cy.get(".pad").contains("8").click();
     cy.get(".screen").should("contain.text", 5678);
 
-    // // Type '='
-    // cy.get(".pad").contains("=").click();
+    // Type '='
+    cy.get(".pad").contains("=").click();
 
-    // // Result is displayed
-    // cy.get(".screen").should("contain.text", 1234 + 5678);
+    // Result is displayed
+    cy.get(".screen").should("contain.text", 1234 + 5678);
   });
 });

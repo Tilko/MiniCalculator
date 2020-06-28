@@ -8,6 +8,7 @@ const initCalculator = () => {
   const screen = document.querySelector(".screen");
   const allDigits = document.querySelectorAll(".digit");
   const plus = document.querySelector('#plus')
+  const equal = document.querySelector('#equal')
 
   const updateDisplay = (toDisplay) => {
     screen.textContent = toDisplay;
@@ -24,6 +25,7 @@ const initCalculator = () => {
     numberDiv.addEventListener("click", sendDigitToCalculatorUI)
   );
   plus.addEventListener('click', () => calculatorUI.plusClicked())
+  equal.addEventListener('click', () => calculatorUI.equalClicked())
 
 };
 document.addEventListener("DOMContentLoaded", initCalculator);

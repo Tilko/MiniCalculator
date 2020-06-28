@@ -37,32 +37,32 @@ describe("Calculator", () => {
 
   it("can add 2 numbers", () => {
     // Type number '1234'
-    cy.get(".numpad").contains("1").click();
+    cy.get(".pad").contains("1").click();
     cy.get(".screen").should("contain.text", 1);
     cy.get(".screen").should("not.contain.text", 0);
-    cy.get(".numpad").contains("2").click();
+    cy.get(".pad").contains("2").click();
     cy.get(".screen").should("contain.text", 12);
-    cy.get(".numpad").contains("3").click();
+    cy.get(".pad").contains("3").click();
     cy.get(".screen").should("contain.text", 123);
-    cy.get(".numpad").contains("4").click();
+    cy.get(".pad").contains("4").click();
     cy.get(".screen").should("contain.text", 1234);
 
     // Type '+'
-    cy.get(".numpad").contains("+").click();
+    cy.get(".pad").contains("+").click();
 
     // Type number '5678'
-    cy.get(".numpad").contains("5").click();
+    cy.get(".pad").contains("5").click();
     cy.get(".screen").should("contain.text", 5);
     cy.get(".screen").should("not.contain.text", 1234);
-    cy.get(".numpad").contains("6").click();
+    cy.get(".pad").contains("6").click();
     cy.get(".screen").should("contain.text", 56);
-    cy.get(".numpad").contains("7").click();
+    cy.get(".pad").contains("7").click();
     cy.get(".screen").should("contain.text", 567);
-    cy.get(".numpad").contains("8").click();
+    cy.get(".pad").contains("8").click();
     cy.get(".screen").should("contain.text", 5678);
 
     // Type '='
-    cy.get(".numpad").contains("=").click();
+    cy.get(".pad").contains("=").click();
 
     // Result is displayed
     cy.get(".screen").should("contain.text", 1234 + 5678);

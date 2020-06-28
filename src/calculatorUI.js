@@ -16,6 +16,10 @@ class CalculatorUI {
     this._numberDisplayed = 0;
   }
 
+  equalClicked() {
+    this.numberDisplayed = this.calculator.result
+  }
+
   registerNumberDisplayedChangedListener(callback) {
     this.listener = callback;
   }

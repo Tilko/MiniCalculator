@@ -5,7 +5,7 @@ describe("CalculatorUI", () => {
   let calculatorUI;
 
   beforeEach(() => {
-    jest.clearAllMocks()
+    jest.clearAllMocks();
     calculatorUI = new CalculatorUI(mockCalculator);
   });
 
@@ -53,6 +53,12 @@ describe("CalculatorUI", () => {
     calculatorUI.plusClicked();
 
     expect(mockCalculator.add).toHaveBeenCalledWith(123);
+  });
+
+  it("displays calculator result when clicking equal", () => {
+    mockCalculator.result = 890;
+    calculatorUI.equalClicked();
+    expect(calculatorUI.numberDisplayed).toBe(890);
   });
 
   describe("After entered first number and clicked '+'", () => {

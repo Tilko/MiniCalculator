@@ -11,3 +11,69 @@ h1 {
 .hidden {
   display: none;
 }
+
+.showcase {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+}
+
+button  {
+  all: unset;
+}
+
+.calculator {
+  width: 230px;
+  height: 320px;
+  background-color: red;
+  font-size: 0.6em;
+  display: grid;
+  grid-template-rows: 80px 1fr;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 15px 50px -5px grey;
+  border: 1px solid #1F1F1F;
+  color: #ededec;
+}
+
+.screen {
+  background-color: #5e5c57;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  padding-right: 10px;
+  font-weight: 100;
+  font-size: 6em;
+
+}
+
+.numpad {
+  display: grid;
+  background-color: #575655;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  gap: 1px;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+
+.zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.number {
+  display: flex;
+  background-color: #848380;
+  justify-content: center;
+  align-items: center;
+  /* border: solid 1px black;
+  box-sizing: border-box; */
+}
+
+.number:active {
+  background-color: #B2B2B1;
+}

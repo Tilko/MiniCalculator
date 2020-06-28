@@ -1,10 +1,12 @@
 const CalculatorUI = require("./calculatorUI");
 
 describe("CalculatorUI", () => {
+  let mockCalculator = { add: jest.fn() };
   let calculatorUI;
 
   beforeEach(() => {
-    calculatorUI = new CalculatorUI();
+    jest.clearAllMocks()
+    calculatorUI = new CalculatorUI(mockCalculator);
   });
 
   it("should display 0 initially", () => {
@@ -26,7 +28,7 @@ describe("CalculatorUI", () => {
   it("notifies when number-to-display changes", () => {
     const callback = jest.fn();
 
-    calculatorUI.registerListener(callback);
+    calculatorUI.registerNumberDisplayedChangedListener(callback);
 
     expect(callback).not.toHaveBeenCalled();
     calculatorUI.numberDisplayed = 12345;
@@ -36,20 +38,30 @@ describe("CalculatorUI", () => {
   it("notifies when digit clicked", () => {
     const callback = jest.fn();
 
-    calculatorUI.registerListener(callback);
+    calculatorUI.registerNumberDisplayedChangedListener(callback);
 
     expect(callback).not.toHaveBeenCalled();
     calculatorUI.digitClicked(5);
     expect(callback).toHaveBeenCalledWith(5);
   });
 
+  it("calls 'add' on calculator with number displayed when 'plus' clicked", () => {
+    calculatorUI.digitClicked(1);
+    calculatorUI.digitClicked(2);
+    calculatorUI.digitClicked(3);
+
+    calculatorUI.plusClicked();
+
+    expect(mockCalculator.add).toHaveBeenCalledWith(123);
+  });
+
   describe("After entered first number and clicked '+'", () => {
     let firstNumberDigits = [1, 2, 3];
-    let firstNumber = Number(firstNumberDigits.join())
-    
+    let firstNumber = Number(firstNumberDigits.join());
+
     beforeEach(() => {
       for (digits of firstNumberDigits) {
-        calculatorUI.digitClicked(digits)
+        calculatorUI.digitClicked(digits);
       }
       calculatorUI.plusClicked();
     });
@@ -57,15 +69,13 @@ describe("CalculatorUI", () => {
     it("still shows first number", () => {
       calculatorUI.numberDisplayed = firstNumber;
     });
-    
-    it('replaces number when entering more digits', () => {
-      calculatorUI.digitClicked(4)
-      calculatorUI.digitClicked(5)
-      calculatorUI.digitClicked(6)
 
-      expect(calculatorUI.numberDisplayed).toBe(456)
-    })
+    it("replaces number when entering more digits", () => {
+      calculatorUI.digitClicked(4);
+      calculatorUI.digitClicked(5);
+      calculatorUI.digitClicked(6);
+
+      expect(calculatorUI.numberDisplayed).toBe(456);
+    });
   });
-
-  // it("replaces number displayed when entering digit after clicking ")
 });

@@ -1,9 +1,10 @@
 const doNothing = () => {};
 
 class CalculatorUI {
-  constructor() {
+  constructor(calculator) {
     this._numberDisplayed = 0;
     this.listener = doNothing;
+    this.calculator = calculator;
   }
 
   digitClicked(digit) {
@@ -11,10 +12,11 @@ class CalculatorUI {
   }
 
   plusClicked() {
+    this.calculator.add(this._numberDisplayed);
     this._numberDisplayed = 0;
   }
 
-  registerListener(callback) {
+  registerNumberDisplayedChangedListener(callback) {
     this.listener = callback;
   }
 

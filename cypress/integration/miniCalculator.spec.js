@@ -40,4 +40,17 @@ describe("Calculator", () => {
     digitFour.click()
     cy.get(".screen").should("contain.text", 4);
   });
+  
+  it("should display concat digits on screen when clicking on multiple digit", () => {
+    const digitOne = cy.contains("1")
+    const digitThree = cy.contains("3")
+    const digitSeven = cy.contains("7")
+
+    digitOne.click()
+    digitThree.click()
+    digitThree.click()
+    digitSeven.click()
+
+    cy.get(".screen").should("contain.text", 1337);
+  });
 });

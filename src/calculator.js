@@ -10,8 +10,8 @@ class Calculator {
   equal(number) {
     if (this.currentOp === "add") {
       this.result += number;
-    } else{
-      throw 'Not implemented'
+    } else {
+      this.result = number;
     }
   }
 }

@@ -1,12 +1,12 @@
 const CalculatorUI = require("./calculatorUI");
+const Calculator = require("./calculator");
 
 describe("CalculatorUI", () => {
-  let mockCalculator = { add: jest.fn(), equal: jest.fn() };
   let calculatorUI;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    calculatorUI = new CalculatorUI(mockCalculator);
+    calculatorUI = new CalculatorUI(new Calculator());
   });
 
   it("should display 0 initially", () => {
@@ -45,35 +45,9 @@ describe("CalculatorUI", () => {
     expect(callback).toHaveBeenCalledWith(5);
   });
 
-  it("calls 'add' on calculator with number displayed when 'plus' clicked", () => {
-    calculatorUI.digitClicked(1);
-    calculatorUI.digitClicked(2);
-    calculatorUI.digitClicked(3);
-
-    calculatorUI.plusClicked();
-
-    expect(mockCalculator.add).toHaveBeenCalledWith(123);
-  });
-
-  it("calls 'equal' on calculator with number displayed when 'equal' clicked", () => {
-    calculatorUI.digitClicked(1);
-    calculatorUI.digitClicked(2);
-    calculatorUI.digitClicked(3);
-
-    calculatorUI.equalClicked();
-
-    expect(mockCalculator.equal).toHaveBeenCalledWith(123);
-  });
-
-  it("displays calculator result when clicking equal", () => {
-    mockCalculator.result = 890;
-    calculatorUI.equalClicked();
-    expect(calculatorUI.numberDisplayed).toBe(890);
-  });
-
   describe("After entered first number and clicked '+'", () => {
     let firstNumberDigits = [1, 2, 3];
-    let firstNumber = Number(firstNumberDigits.join());
+    let firstNumber = Number(firstNumberDigits.join(""));
 
     beforeEach(() => {
       for (digits of firstNumberDigits) {
@@ -93,5 +67,15 @@ describe("CalculatorUI", () => {
 
       expect(calculatorUI.numberDisplayed).toBe(456);
     });
+
+    it("add second number to first", () => {
+      calculatorUI.digitClicked(4);
+      calculatorUI.digitClicked(5);
+      calculatorUI.digitClicked(6);
+      calculatorUI.equalClicked();
+
+      expect(calculatorUI.numberDisplayed).toBe(firstNumber + 456);
+    });
+
   });
 });

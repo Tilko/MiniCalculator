@@ -20,9 +20,9 @@ const initCalculator = () => {
     updateScreen(calculatorUI.number);
   }));
 
-  for (const op of Object.keys(operators_Id_To_Code)) {
-    document.querySelector('#' + op).addEventListener('click', () => {
-      const rez = calculator.treatOperation(calculatorUI.number, op);
+  for (const opId of Object.keys(operators_Id_To_Code)) {
+    document.querySelector('#' + opId).addEventListener('click', () => {
+      const rez = calculator.treatOperation(calculatorUI.number, opId);
       calculatorUI.number = rez;
       updateScreen(rez);
       calculatorUI.resetNumber();

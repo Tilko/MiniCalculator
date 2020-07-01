@@ -16,7 +16,10 @@ class Calculator {
 
   constructor() {
     this.result = 0;
-    this.currentOp;
+    this.operation = null;
+  }
+
+  reset() {
     this.operation = null;
   }
 
@@ -27,7 +30,7 @@ class Calculator {
       this.operation = new Operation(operators_Id_To_Code[operatorId]);
       this.operation.lhs = operand;
     }
-  }  
+  }
   treatOperation(operand, operatorId) {
     const newLhsOperand = this.treatOperand(operand);
     this.treatOperator(newLhsOperand, operatorId);

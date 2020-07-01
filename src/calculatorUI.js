@@ -1,27 +1,14 @@
-const doNothing = () => {};
-
 class CalculatorUI {
   constructor(calculator) {
-    this._number = 0;
-    this.listener = doNothing;
+    this.number = 0;
   }
 
   appendDigit(digit) {
-    this.number = this._number * 10 + digit;
-  }
-  registerNumberChangedListener(callback) {
-    this.listener = callback;
-  }
-  resetNumber(){
-    this._number = 0;
-  }
-  set number(number) {
-    this._number = number;
-    this.listener(this.number);
+    this.number = this.number * 10 + digit;
   }
 
-  get number() {
-    return this._number;
+  resetNumber(){
+    this.number = 0;
   }
 }
 

@@ -10,23 +10,31 @@ const initCalculator = () => {
   const screen = document.querySelector(".screen");
   const clearButton = document.querySelector('#clear')
 
-  const updateDisplay = (toDisplay) => {
+  const updateScreen = toDisplay => {
     screen.textContent = toDisplay;
   };
-  calculatorUI.registerNumberChangedListener(updateDisplay);
 
   const allDigitDivs = document.querySelectorAll(".digit");
-  allDigitDivs.forEach(digitDiv => digitDiv.addEventListener("click",
-    event => calculatorUI.appendDigit(Number(event.target.textContent))
-  ));
+  allDigitDivs.forEach(digitDiv => digitDiv.addEventListener("click", event => {
+    calculatorUI.appendDigit(Number(event.target.textContent));
+    updateScreen(calculatorUI.number);
+  }));
 
   for (const op of Object.keys(operators_Id_To_Code)) {
     document.querySelector('#' + op).addEventListener('click', () => {
       const rez = calculator.treatOperation(calculatorUI.number, op);
       calculatorUI.number = rez;
+      updateScreen(rez);
       calculatorUI.resetNumber();
     })
   }
+
+  clearButton.addEventListener('click', () => {
+    calculatorUI.resetNumber();
+    updateScreen(0);
+    calculator.reset();
+  })
+
 };
 document.addEventListener("DOMContentLoaded", initCalculator);
 document.addEventListener("DOMContentLoaded", sandbox.run);

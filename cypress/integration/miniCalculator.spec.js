@@ -73,6 +73,7 @@ describe("Calculator", () => {
     cy.get(".pad").contains("1").click();
     cy.get(".pad").contains("+").click();
     cy.get(".pad").contains("C").click();
+    cy.get(".screen").should("contain.text", 0);
 
     cy.get(".pad").contains("1").click();
     cy.get(".pad").contains("+").click();

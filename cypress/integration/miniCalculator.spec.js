@@ -25,6 +25,7 @@ describe("Calculator", () => {
   });
 
   const operation = op => cy.get(".operator-pad").contains(op).click();
+  const toogleSign = () =>  cy.get("#signToggle").click();
   const digit = d0 => cy.get(".pad").contains("" + d0).click();
   const screenIs = textToBeOnScreen => 
       cy.get(".screen").should(elem => expect(elem.text())
@@ -133,4 +134,31 @@ describe("Calculator", () => {
     operation("=")
     screenIs(3);
   });
+
+  it('can toogle sign of number under building', () => {
+    toogleSign()
+    screenIs(0);
+    digit(1);
+    screenIs(-1);
+    digit(1);
+    screenIs(-11);
+
+    operation("+")
+
+    digit(1);
+    digit(1);
+
+    operation("=")
+    screenIs(0);
+  })
+  it('can divide (or multiply) by negative number', () => {
+    digit(1);
+    digit(2);
+    operation("/")
+    toogleSign()
+    digit(2);
+
+    operation("=")
+    screenIs(-6);
+  })
 });

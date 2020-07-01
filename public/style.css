@@ -97,7 +97,7 @@ button {
   background-color: #cb7d06;
 }
 
-.digit {
+.digit, #dot{
   display: flex;
   background-color: #848380;
   justify-content: center;

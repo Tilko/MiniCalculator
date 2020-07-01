@@ -21,13 +21,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/FlorianKempenich/MiniCalculator.git"
+    "url": "git+https://github.com/Tilko/MiniCalculator.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/FlorianKempenich/MiniCalculator/issues"
+    "url": "https://github.com/Tilko/MiniCalculator/issues"
   },
-  "homepage": "https://github.com/FlorianKempenich/MiniCalculator#readme"
+  "homepage": "https://github.com/Tilko/MiniCalculator#readme"
 }

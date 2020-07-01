@@ -60,15 +60,22 @@ button {
   gap: 1px;
 }
 
+.othersOps {
+  display: flex;
+  background-color: #49463f;
+  justify-content: center;
+  align-items: center;
+}
+
 .numpad {
   display: grid;
-  grid-template: 1fr 1fr 1fr 1fr / 1fr 1fr 1fr;
+  grid-template: repeat(5, 1fr)/ repeat(3, 1fr);
   gap: inherit;
 }
 
 .operator-pad {
   display: grid;
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   gap: inherit;
 }
 

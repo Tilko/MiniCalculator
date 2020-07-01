@@ -10,7 +10,8 @@ const config = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     compress: true,
-    port: 1234
+    port: 1234,
+    disableHostCheck: true
   }
 };
 

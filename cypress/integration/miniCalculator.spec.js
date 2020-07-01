@@ -81,12 +81,20 @@ describe("Calculator", () => {
     cy.get(".pad").contains("=").click();
     cy.get(".screen").should("contain.text", 3);
   });
-  
+
   it("should not only do addition, test substraction", () => {
     cy.get(".pad").contains("7").click();
     cy.get(".pad").contains("-").click();
     cy.get(".pad").contains("3").click();
     cy.get(".pad").contains("=").click();
     cy.get(".screen").should("contain.text", 7-3);
+  })
+
+  it('should display the divByZero error with "Infinity"', () => {
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("/").click();
+    cy.get(".pad").contains("0").click();
+    cy.get(".pad").contains("=").click();
+    cy.get(".screen").should("contain.text", 'Infinity');
   })
 });

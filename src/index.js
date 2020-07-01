@@ -23,7 +23,6 @@ const initCalculator = () => {
   for (const opId of Object.keys(operators_Id_To_Code)) {
     document.querySelector('#' + opId).addEventListener('click', () => {
       const rez = calculator.treatOperation(calculatorUI.number, opId);
-      calculatorUI.number = rez;
       updateScreen(rez);
       calculatorUI.number = opId == 'equal' ? rez : 0;
     })

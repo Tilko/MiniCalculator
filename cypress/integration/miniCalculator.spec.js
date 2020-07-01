@@ -97,4 +97,30 @@ describe("Calculator", () => {
     cy.get(".pad").contains("=").click();
     cy.get(".screen").should("contain.text", 'Infinity');
   })
+
+  it('can chain the operation', () => {
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("+").click();
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("+").click();
+    cy.get(".screen").should("contain.text", 2);
+    cy.get(".pad").contains("1").click();
+    cy.get(".screen").should("contain.text", 1);
+    cy.get(".pad").contains("=").click();
+    cy.get(".screen").should("contain.text", 3);
+  });
+
+  it('can chain the operation also after "equal" op', () => {
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("+").click();
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("=").click();
+    cy.get(".screen").should("contain.text", 2);
+    cy.get(".pad").contains("+").click();
+    cy.get(".screen").should("contain.text", 2);
+    cy.get(".pad").contains("1").click();
+    cy.get(".screen").should("contain.text", 1);
+    cy.get(".pad").contains("=").click();
+    cy.get(".screen").should("contain.text", 3);
+  });
 });

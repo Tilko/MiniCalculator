@@ -22,15 +22,7 @@ class Calculator {
   reset() {
     this.operation = null;
   }
-
-  treatOperator(operand, operatorId) {
-    if (operatorId === "equal")
-      this.operation = null;
-    else {
-      this.operation = new Operation(operators_Id_To_Code[operatorId]);
-      this.operation.lhs = operand;
-    }
-  }
+  
   treatOperation(operand, operatorId) {
     const newLhsOperand = this.treatOperand(operand);
     this.treatOperator(newLhsOperand, operatorId);
@@ -42,6 +34,14 @@ class Calculator {
       return this.operation.execute();
     }
     return operand;
+  }
+  treatOperator(operand, operatorId) {
+    if (operatorId === "equal")
+      this.operation = null;
+    else {
+      this.operation = new Operation(operators_Id_To_Code[operatorId]);
+      this.operation.lhs = operand;
+    }
   }
 }
 

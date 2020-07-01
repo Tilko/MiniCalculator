@@ -1,5 +1,11 @@
 const url = "http://127.0.0.1:1234/";
 
+//
+
+
+
+
+
 describe("Debug Button", () => {
   it("should show Greg div when clicking on button", () => {
     cy.visit(url);
@@ -18,6 +24,13 @@ describe("Calculator", () => {
     cy.visit(url);
   });
 
+  const operation = op => cy.get(".operator-pad").contains(op).click();
+  const digit = d0 => cy.get(".pad").contains("" + d0).click();
+  const screenIs = textToBeOnScreen => 
+      cy.get(".screen").should(elem => expect(elem.text())
+      .to.equal("" + textToBeOnScreen))
+  //prev was: screenIs(xxx);
+
   it("should display a numpad with digits", () => {
     cy.contains("0").should("be.visible");
     cy.contains("1").should("be.visible");
@@ -29,98 +42,95 @@ describe("Calculator", () => {
     cy.contains("7").should("be.visible");
     cy.contains("8").should("be.visible");
     cy.contains("9").should("be.visible");
+
+
   });
 
   it("should display 0 by default", () => {
-    cy.get(".screen").should("contain.text", 0);
+    screenIs(0);
   });
 
   it("can add 2 numbers", () => {
     // Type number '1234'
-    cy.get(".pad").contains("1").click();
-    cy.get(".screen").should("contain.text", 1);
-    cy.get(".screen").should("not.contain.text", 0);
-    cy.get(".pad").contains("2").click();
-    cy.get(".screen").should("contain.text", 12);
-    cy.get(".pad").contains("3").click();
-    cy.get(".screen").should("contain.text", 123);
-    cy.get(".pad").contains("4").click();
-    cy.get(".screen").should("contain.text", 1234);
+    digit(1)
+    screenIs(1);
+    digit(2)
+    screenIs(12);
+    digit(3)
+    screenIs(123);
+    digit(4)
+    screenIs(1234);
 
-    // Type '+'
-    cy.get(".pad").contains("+").click();
+    operation("+");
 
-    // Type number '5678'
-    cy.get(".pad").contains("5").click();
-    cy.get(".screen").should("contain.text", 5);
-    cy.get(".screen").should("not.contain.text", 1234);
-    cy.get(".pad").contains("6").click();
-    cy.get(".screen").should("contain.text", 56);
-    cy.get(".pad").contains("7").click();
-    cy.get(".screen").should("contain.text", 567);
-    cy.get(".pad").contains("8").click();
-    cy.get(".screen").should(elem => expect(elem.text()).to.equal('5678'))//should("have.string", 5678);
-    //expect(cy.get(".screen").text()).to.equal('5678')
-   
-    // Type '='
-    cy.get(".pad").contains("=").click();
 
-    // Result is displayed
-    cy.get(".screen").should("contain.text", 1234 + 5678);
+    digit(5)
+
+    screenIs(5);
+    digit(6)
+    screenIs(56);
+    digit(7)
+    screenIs(567);
+    digit(8)
+    screenIs(5678);
+
+    operation("=");
+
+    screenIs(1234 + 5678);
   });
 
   it("can reset the state by clicking the C button", () => {
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("+").click();
-    cy.get(".pad").contains("C").click();
-    cy.get(".screen").should("contain.text", 0);
+    digit(1);
 
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("+").click();
-    cy.get(".pad").contains("2").click();
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 3);
+    cy.get(".pad").contains("C").click();
+    screenIs(0);
+
+    digit(1);
+    operation("+");
+    digit(2);
+    operation("=");
+    screenIs(3);
   });
 
   it("should not only do addition, test substraction", () => {
-    cy.get(".pad").contains("7").click();
-    cy.get(".pad").contains("-").click();
-    cy.get(".pad").contains("3").click();
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 7-3);
+    digit(7);
+    operation("-");
+    digit(3);
+    operation("=");
+    screenIs(7 - 3);
   })
 
   it('should display the divByZero error with "Infinity"', () => {
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("/").click();
-    cy.get(".pad").contains("0").click();
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 'Infinity');
+    digit(1);
+    operation("/")
+    digit(0);
+    operation("=")
+    screenIs('Infinity');
   })
 
   it('can chain the operation', () => {
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("+").click();
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("+").click();
-    cy.get(".screen").should("contain.text", 2);
-    cy.get(".pad").contains("1").click();
-    cy.get(".screen").should("contain.text", 1);
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 3);
+    digit(1);
+    operation("+");
+    digit(1);
+    operation("+");
+    screenIs(2);
+    digit(1);
+    screenIs(1);
+    operation("=")
+    screenIs(3);
   });
 
   it('can chain the operation also after "equal" op', () => {
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("+").click();
-    cy.get(".pad").contains("1").click();
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 2);
-    cy.get(".pad").contains("+").click();
-    cy.get(".screen").should("contain.text", 2);
-    cy.get(".pad").contains("1").click();
-    cy.get(".screen").should("contain.text", 1);
-    cy.get(".pad").contains("=").click();
-    cy.get(".screen").should("contain.text", 3);
+    digit(1);
+    operation("+")
+    digit(1);
+    operation("=")
+    screenIs(2);
+    operation("+")
+    screenIs(2);
+    digit(1);
+    screenIs(1);
+    operation("=")
+    screenIs(3);
   });
 });

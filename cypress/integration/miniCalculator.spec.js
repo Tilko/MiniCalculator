@@ -69,4 +69,16 @@ describe("Calculator", () => {
     cy.get(".screen").should("contain.text", 1234 + 5678);
   });
 
+  it("can reset the state by clicking the C button", () => {
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("+").click();
+    cy.get(".pad").contains("C").click();
+
+    cy.get(".pad").contains("1").click();
+    cy.get(".pad").contains("+").click();
+    cy.get(".pad").contains("2").click();
+    cy.get(".pad").contains("=").click();
+    cy.get(".screen").should("contain.text", 3);
+  });
+
 });

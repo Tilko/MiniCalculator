@@ -59,12 +59,14 @@ describe("Calculator", () => {
     cy.get(".pad").contains("7").click();
     cy.get(".screen").should("contain.text", 567);
     cy.get(".pad").contains("8").click();
-    cy.get(".screen").should("contain.text", 5678);
-
+    cy.get(".screen").should(elem => expect(elem.text()).to.equal('5678'))//should("have.string", 5678);
+    //expect(cy.get(".screen").text()).to.equal('5678')
+   
     // Type '='
     cy.get(".pad").contains("=").click();
 
     // Result is displayed
     cy.get(".screen").should("contain.text", 1234 + 5678);
   });
+
 });

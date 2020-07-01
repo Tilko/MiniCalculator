@@ -78,6 +78,14 @@ button {
   grid-template-rows: repeat(5, 1fr);
   gap: inherit;
 }
+.zeroAndDot {
+  grid-column-start: 1;
+  grid-column-end: 4;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: inherit;
+}
 
 .operation {
   display: flex;
@@ -87,11 +95,6 @@ button {
 }
 .operation:active {
   background-color: #cb7d06;
-}
-
-.zero {
-  grid-column-start: 1;
-  grid-column-end: 4;
 }
 
 .digit {

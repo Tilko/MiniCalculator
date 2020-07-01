@@ -10,35 +10,39 @@ const initCalculator = () => {
   const screen = document.querySelector(".screen");
   const clearButton = document.querySelector('#clear')
   const signToogleButton = document.querySelector('#signToggle')
-  
+  const dotButton = document.querySelector('#dot')
+
   const updateScreen = toDisplay => {
     screen.textContent = toDisplay;
   };
 
   const allDigitDivs = document.querySelectorAll(".digit");
   allDigitDivs.forEach(digitDiv => digitDiv.addEventListener("click", event => {
-    calculatorUI.appendDigit(Number(event.target.textContent));
-    updateScreen(calculatorUI.getValue());
+    calculatorUI.appendDigit(event.target.textContent);
+    updateScreen(calculatorUI.getValueString());
   }));
 
   for (const opId of Object.keys(operators_Id_To_Code)) {
     document.querySelector('#' + opId).addEventListener('click', () => {
-      const rez = calculator.treatOperation(calculatorUI.getValue(), opId);
+      const rez = calculator.treatOperation(Number(calculatorUI.getValueString()), opId);
       updateScreen(rez);
       calculatorUI.setValue(opId == 'equal' ? rez : 0);
     })
   }
 
   clearButton.addEventListener('click', () => {
-    calculatorUI.resetNumber();
+    calculatorUI.resetValue();
     updateScreen(0);
     calculator.reset();
   })
   signToogleButton.addEventListener('click', () => {
     calculatorUI.toggleSignum();
-    updateScreen(calculatorUI.getValue());
+    updateScreen(calculatorUI.getValueString());
   })
-
+  dotButton.addEventListener('click', () => {
+    calculatorUI.setDecimalDot();
+    updateScreen(calculatorUI.getValueString());
+  })
 };
 document.addEventListener("DOMContentLoaded", initCalculator);
 document.addEventListener("DOMContentLoaded", sandbox.run);

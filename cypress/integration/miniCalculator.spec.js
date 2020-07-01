@@ -137,7 +137,7 @@ describe("Calculator", () => {
 
   it('can toogle sign of number under building', () => {
     toogleSign()
-    screenIs(0);
+    screenIs("-0");
     digit(1);
     screenIs(-1);
     digit(1);

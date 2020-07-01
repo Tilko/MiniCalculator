@@ -25,7 +25,7 @@ const initCalculator = () => {
       const rez = calculator.treatOperation(calculatorUI.number, opId);
       calculatorUI.number = rez;
       updateScreen(rez);
-      calculatorUI.resetNumber();
+      calculatorUI.number = opId == 'equal' ? rez : 0;
     })
   }
 

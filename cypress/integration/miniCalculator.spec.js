@@ -29,7 +29,8 @@ describe("Calculator", () => {
   const digit = d0 => cy.get(".pad").contains("" + d0).click();
   const screenIs = textToBeOnScreen => 
       cy.get(".screen").should(elem => expect(elem.text())
-      .to.equal("" + textToBeOnScreen))
+      .to.equal("" + textToBeOnScreen));
+  const dot = () =>  cy.get("#dot").click();
   //prev was: screenIs(xxx);
 
   it("should display a numpad with digits", () => {
@@ -160,5 +161,18 @@ describe("Calculator", () => {
 
     operation("=")
     screenIs(-6);
+  })
+
+  it('the UI can deals with fractional numbers', () => {
+    digit(1);
+    dot();
+    digit(5);
+    screenIs(1.5);
+
+    operation("*")
+    digit(2);
+
+    operation("=")
+    screenIs(3);
   })
 });

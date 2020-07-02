@@ -29,7 +29,6 @@ const initCalculator = () => {
           align-items: center;
           font-size: ${adaptedFont}px;
           `
-
         screen.textContent = numberToDisplay;
     };
 

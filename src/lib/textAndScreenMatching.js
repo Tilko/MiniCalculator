@@ -26,7 +26,6 @@ class TextAndScreenMatcher {
             rightFont = this.minFontSizeInPixel;
         }
         rightFont = Math.trunc(rightFont);
-        // console.log("recalc:" + calculateTextRect(text, "" + rightFont + "px").width)
         return { text, adaptedFont: rightFont };
     }
 }

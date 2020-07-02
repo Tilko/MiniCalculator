@@ -4,7 +4,6 @@ const splitNumberForStringRepresentation = require("./lib/NumberStrRepresentatio
 class NumberPart {
   constructor(part0 = "") {
     this.part = "" + part0;
-    console.log("this.part:" + this.part)
   }
   getValue() {
     return this.part === "" ? "0" : this.part;
@@ -65,9 +64,6 @@ class CalculatorUI {
     ({ signum: this.signum, integralPart: iPart, fractionalPart: fPart }
       = splitNumberForStringRepresentation(val))
     this.integralPart = new NumberPart(iPart);
-    console.log("val:" + val)
-    console.log("iPart:" + iPart)
-    console.log("fPart:" + fPart)
     if (fPart !== 0) {
       this.fractionalPart = new NumberPart(fPart);
     } else {

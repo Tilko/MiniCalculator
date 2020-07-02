@@ -2,60 +2,63 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mini Calculator</title>
-  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;1,100&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="bundle.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Calculator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,300;0,400;0,500;1,100&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="bundle.js"></script>
 </head>
 
 <body>
-  <h1>Magie Greg!!</h1>
+    <!-- <div id="Test">
+    abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+  </div> -->
+    <h1>Magie Greg!!</h1>
 
-  <button id="btn">Show debug div</button>
-  <div class="debug hidden">Greg</div>
+    <button id="btn">Show debug div</button>
+    <div class="debug hidden">Greg</div>
 
-  <hr />
+    <hr />
 
-  <div class="showcase">
-    <div class="calculator">
-      <div class="screen">0</div>
-      <div class="pad">
+    <div class="showcase">
+        <div class="calculator">
+            <div class="screen">0</div>
+            <div class="pad">
 
-        <div class="numpad">
-          <button class="othersOps" id="clear">C</button>
-          <button class="othersOps" id="purcent"></button>
-          <button class="othersOps" id="signToggle">+/-</button>
+                <div class="numpad">
+                    <button class="othersOps" id="clear">C</button>
+                    <!-- &#8406; -->
+                    <button class="othersOps" id="backSpace">&#8592;</button>
+                    <button class="othersOps" id="signToggle">+/-</button>
 
-          <button class="digit">7</button>
-          <button class="digit">8</button>
-          <button class="digit">9</button>
-          <button class="digit">4</button>
-          <button class="digit">5</button>
-          <button class="digit">6</button>
-          <button class="digit">1</button>
-          <button class="digit">2</button>
-          <button class="digit">3</button>
-          
-          <div class="zeroAndDot">
-            <button class="digit zero">0</button>
-            <button  id="dot">.</button>
-          </div>
-          
+                    <button class="digit">7</button>
+                    <button class="digit">8</button>
+                    <button class="digit">9</button>
+                    <button class="digit">4</button>
+                    <button class="digit">5</button>
+                    <button class="digit">6</button>
+                    <button class="digit">1</button>
+                    <button class="digit">2</button>
+                    <button class="digit">3</button>
+
+                    <div class="zeroAndDot">
+                        <button class="digit zero">0</button>
+                        <button id="dot">.</button>
+                    </div>
+
+                </div>
+
+                <div class="operator-pad">
+                    <button class="operation" id="div">/</button>
+                    <button class="operation" id="mult">*</button>
+                    <button class="operation" id="minus">-</button>
+                    <button class="operation" id="plus">+</button>
+                    <button class="operation" id="equal">=</button>
+                </div>
+            </div>
         </div>
-
-        <div class="operator-pad">
-          <button class="operation" id="div">/</button>
-          <button class="operation" id="mult">*</button>
-          <button class="operation" id="minus">-</button>
-          <button class="operation" id="plus">+</button>
-          <button class="operation" id="equal">=</button>
-        </div>
-      </div>
     </div>
-  </div>
 </body>
 
 </html>

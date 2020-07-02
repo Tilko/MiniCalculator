@@ -1,5 +1,5 @@
 module.exports = function calculateTextRect(text, fontSizeCssText, otherCssTextLikeFamilyEtc) { //fontNumber, fontUnit) {
-    const div = document.createElement("div"); //${fontNumber}${fontUnit};
+    const div = document.createElement("div");
     div.style.cssText = `
     font-size: ${fontSizeCssText};
     ${otherCssTextLikeFamilyEtc};
@@ -9,11 +9,12 @@ module.exports = function calculateTextRect(text, fontSizeCssText, otherCssTextL
     white-space: nowrap; 
     visibility: hidden;
     `
-        //visibility: hidden;
     div.innerHTML = text;
-
-    var theFirstChild = document.body.firstChild;
-    document.body.insertBefore(div, theFirstChild);
-
-    return { width: div.clientWidth, height: div.clientHeight };
+    const body = document.body;
+    var theFirstChild = body.firstChild;
+    body.insertBefore(div, theFirstChild);
+    const width = div.clientWidth;
+    const height = div.clientHeight;
+    body.removeChild(theFirstChild)
+    return { width, height };
 }

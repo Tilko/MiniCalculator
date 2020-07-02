@@ -16,7 +16,6 @@ class NumberPart {
     if (len > 0)
       this.part = this.part.substr(0, len - 1)
   }
-
 }
 
 class CalculatorUI {
@@ -42,15 +41,10 @@ class CalculatorUI {
     this.fractionalPart = new NumberPart()
   }
   backSpace() {
-    if (this.fractionalPart !== null) {
-      if (this.fractionalPart.part === '') {
-        this.fractionalPart = null;
-      } else {
-        this.fractionalPart.popDigit()
-      }
-    } else {
-      this.integralPart.popDigit()
-    }
+    if (this.fractionalPart !== null && this.fractionalPart.part === '')
+      this.fractionalPart = null;
+    else
+      this.getCurrentPart().popDigit()
   }
   getValueString() {
     const integralVal = Number(this.integralPart.getValue());
@@ -61,8 +55,11 @@ class CalculatorUI {
   }
   setValue(val) {
     let iPart, fPart;
-    ({ signum: this.signum, integralPart: iPart, fractionalPart: fPart }
-      = splitNumberForStringRepresentation(val))
+    ({
+      signum: this.signum,
+      integralPart: iPart,
+      fractionalPart: fPart
+    } = splitNumberForStringRepresentation(val))
     this.integralPart = new NumberPart(iPart);
     if (fPart !== 0) {
       this.fractionalPart = new NumberPart(fPart);
@@ -70,7 +67,6 @@ class CalculatorUI {
       this.fractionalPart = null;
     }
   }
-
 }
 
 module.exports = CalculatorUI;

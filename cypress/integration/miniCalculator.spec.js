@@ -27,6 +27,7 @@ describe("Calculator", () => {
             .to.equal("" + textToBeOnScreen));
     const dot = () => cy.get("#dot").click();
     //prev was: screenIs(xxx);
+    const backSpace = () => cy.get("#backSpace").click();
 
     it("should display a numpad with digits", () => {
         cy.contains("0").should("be.visible");
@@ -172,7 +173,7 @@ describe("Calculator", () => {
     })
 
 
-    it.only('the displayed number should not be larger than the screen', () => {
+    it('the displayed number should not be larger than the screen', () => {
         for (let i = 0; i < 20; i++) {
             digit(7);
         }
@@ -180,5 +181,28 @@ describe("Calculator", () => {
             const calculatorWidth = calc.width()
             cy.get(".screen").invoke('outerWidth').should('be.lt', calculatorWidth + 1);
         })
+    })
+
+    it('can "backspace" the current number', () => {
+        backSpace()
+        screenIs(0)
+
+        digit(1)
+        backSpace()
+        screenIs(0)
+
+        digit(1)
+        digit(1)
+        dot()
+        digit(1)
+        digit(1)
+        backSpace()
+        screenIs("11.1")
+        backSpace()
+        screenIs("11.")
+        backSpace()
+        screenIs(11)
+        backSpace()
+        screenIs(1)
     })
 });

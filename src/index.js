@@ -12,6 +12,7 @@ const initCalculator = () => {
     const clearButton = document.querySelector('#clear')
     const signToogleButton = document.querySelector('#signToggle')
     const dotButton = document.querySelector('#dot')
+    const backSpaceButton = document.querySelector('#backSpace')
 
     const updateScreen = toDisplay => {
         let numberToDisplay = "" + toDisplay;
@@ -57,6 +58,10 @@ const initCalculator = () => {
     })
     dotButton.addEventListener('click', () => {
         calculatorUI.setDecimalDot();
+        updateScreen(calculatorUI.getValueString());
+    })
+    backSpaceButton.addEventListener('click', () => {
+        calculatorUI.backSpace();
         updateScreen(calculatorUI.getValueString());
     })
 };

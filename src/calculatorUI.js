@@ -1,14 +1,23 @@
+
+const splitNumberForStringRepresentation = require("./lib/NumberStrRepresentation.js");
+
 class NumberPart {
   constructor(part0 = "") {
     this.part = "" + part0;
     console.log("this.part:" + this.part)
   }
-  appendDigit(digit) {
-    this.part = this.part + digit;
-  }
   getValue() {
     return this.part === "" ? "0" : this.part;
   }
+  appendDigit(digit) {
+    this.part = this.part + digit;
+  }
+  popDigit() {
+    const len = this.part.length;
+    if (len > 0)
+      this.part = this.part.substr(0, len - 1)
+  }
+
 }
 
 class CalculatorUI {
@@ -18,13 +27,13 @@ class CalculatorUI {
   resetValue() {
     this.integralPart = new NumberPart();
     this.fractionalPart = null;
-    this.currentNumberPart = this.integralPart;
     this.signum = "";
   }
-
+  getCurrentPart() {
+    return this.fractionalPart || this.integralPart;
+  }
   appendDigit(digit) {
-    this.currentNumberPart.appendDigit(digit)
-    console.log(this.currentNumberPart.part);
+    this.getCurrentPart().appendDigit(digit)
   }
 
   toggleSignum() {
@@ -32,9 +41,18 @@ class CalculatorUI {
   }
   setDecimalDot() {
     this.fractionalPart = new NumberPart()
-    this.currentNumberPart = this.fractionalPart
   }
-
+  backSpace() {
+    if (this.fractionalPart !== null) {
+      if (this.fractionalPart.part === '') {
+        this.fractionalPart = null;
+      } else {
+        this.fractionalPart.popDigit()
+      }
+    } else {
+      this.integralPart.popDigit()
+    }
+  }
   getValueString() {
     const integralVal = Number(this.integralPart.getValue());
     let absoluteValString = this.fractionalPart !== null ?
@@ -43,47 +61,20 @@ class CalculatorUI {
     return this.signum + absoluteValString;
   }
   setValue(val) {
-    const integralPart = Math.trunc(val);
-    this.integralPart = new NumberPart(Math.abs(integralPart));
-    const decimalPartVal = (val - integralPart);
-    if (decimalPartVal !== 0) {
-      const remaining = "" + Math.abs(decimalPartVal);
-
-      let trimmedLen = 0;
-      let index = 0;
-      if (remaining.charAt(0) === "0") {
-        trimmedLen++;
-        index++;
-      }
-      if (remaining.charAt(index) === ".") {
-        trimmedLen++;
-        index++;
-      }
-      this.fractionalPart = new NumberPart(remaining.substr(trimmedLen, remaining.length));
-      this.currentNumberPart = this.fractionalPart;
+    let iPart, fPart;
+    ({ signum: this.signum, integralPart: iPart, fractionalPart: fPart }
+      = splitNumberForStringRepresentation(val))
+    this.integralPart = new NumberPart(iPart);
+    console.log("val:" + val)
+    console.log("iPart:" + iPart)
+    console.log("fPart:" + fPart)
+    if (fPart !== 0) {
+      this.fractionalPart = new NumberPart(fPart);
     } else {
-      this.currentNumberPart = this.integralPart;
       this.fractionalPart = null;
     }
-
-    this.signum = Math.sign(val) === -1 ? "-" : "";
   }
 
 }
 
 module.exports = CalculatorUI;
-
-/*
-const makeCalculatorUI = () => {
-  const digitClicked = (digit) => {
-    let num = calculatorUI.numberDisplayed;
-    calculatorUI.numberDisplayed = num * 10 + digit;
-  };
-
-  const calculatorUI = {
-    digitClicked,
-    numberDisplayed: 0,
-  };
-  return calculatorUI;
-};
-*/

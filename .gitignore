@@ -4,3 +4,4 @@ bundle.js
 spec.pdf
 spec.odt
 cypress/videos/miniCalculator.spec.js.mp4
+*.odt#

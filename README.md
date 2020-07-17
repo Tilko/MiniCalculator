@@ -15,3 +15,4 @@ calculator.text.js
 and calculatorUI.text.js
 
 
+Thanks to FlorianKempenich for showing me TDD stufs !

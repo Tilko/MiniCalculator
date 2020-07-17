@@ -1,6 +1,9 @@
 # Mini Calculator
 
-Acceptance test are OK, it's in:
+Mini-project to practise Front-end dev and TDD.
+
+
+Acceptance tests are OK, it's in:
 
 cypress/integration/miniCalculator.spec.js
 

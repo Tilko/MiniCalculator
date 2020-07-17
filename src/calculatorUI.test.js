@@ -1,6 +1,8 @@
 const CalculatorUI = require("./calculatorUI");
 const Calculator = require("./calculator");
 
+//OUT-OF-DATE, kept for learning:::
+
 describe("CalculatorUI", () => {
   let calculatorUI;
 

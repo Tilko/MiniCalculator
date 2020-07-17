@@ -1,4 +1,4 @@
-module.exports = function calculateTextRect(text, fontSizeCssText, otherCssTextLikeFamilyEtc) { //fontNumber, fontUnit) {
+module.exports = function calculateTextRect(text, fontSizeCssText, otherCssTextLikeFamilyEtc) {
     const div = document.createElement("div");
     div.style.cssText = `
     font-size: ${fontSizeCssText};

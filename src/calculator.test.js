@@ -1,5 +1,7 @@
 const Calculator = require("./calculator");
 
+//OUT-OF-DATE, kept for learning:::
+
 describe("Calculator", () => {
 
   beforeEach(() => {
